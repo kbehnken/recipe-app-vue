@@ -1,16 +1,17 @@
 <template>
     <div>
         <Header />
-        <input v-model='recipeName' name='recipeName' placeholder='Recipe name' />
-        <input v-model='prepTime' name='prepTime' placeholder='Prep Time' />
-        <input v-model='cookTime' name='cookTime' placeholder='Cook Time' />
-        <input v-model='directions' name='directions' placeholder='Directions' />
+        <VTextField outlined v-model='recipeName' name='recipeName' placeholder='Recipe name' ></VTextField>
+        <VTextField outlined v-model='prepTime' name='prepTime' placeholder='Prep Time' />
+        <VTextField outlined v-model='cookTime' name='cookTime' placeholder='Cook Time' />
+        <VTextField outlined v-model='directions' name='directions' placeholder='Directions' />
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import Header from './Header';
+
 import { authHeader } from '../helpers/authHeader';
 
 export default {
