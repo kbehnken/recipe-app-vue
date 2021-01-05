@@ -1,23 +1,22 @@
 <template>
     <div>
         <Header />
-        <div v-for='recipe in recipes' :key='recipe._id'>
-            <h1>
-                {{recipe.name}}
-            </h1>
-        </div>
+        <RecipeTile v-for='recipe in recipes' v-bind:recipe='recipe' :key='recipe._id' />
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { authHeader } from '../helpers/authHeader';
+import { getUserInfo } from '../helpers/getUserInfo';
 import Header from './Header';
+import RecipeTile from './RecipeTile';
 
 export default {
     name: 'MyRecipes',
     components: {
-        Header: Header
+        Header: Header,
+        RecipeTile: RecipeTile
     },
     data: function () {
         return {
@@ -25,7 +24,8 @@ export default {
         }
     },
     mounted() {
-        axios.get('http://localhost:3030/api/v1/my-recipes', {headers: authHeader()})
+        const ownerId = getUserInfo()._id;
+        axios.get(`http://localhost:3030/api/v1/recipes/by-owner-id/${ownerId}`, {headers: authHeader()})
         .then(result => {
             this.recipes = result.data;
         })
