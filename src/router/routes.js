@@ -4,6 +4,7 @@ import Dashboard from '../components/Dashboard.vue';
 import AllRecipes from '../components/AllRecipes.vue';
 import AddRecipeForm from '../components/AddRecipeForm.vue';
 import MyRecipes from '../components/MyRecipes.vue';
+import RecipeCard from '../components/RecipeCard.vue';
 import Login from '../components/Login.vue';
 import isLoggedIn from '../helpers/isLoggedIn';
 
@@ -19,7 +20,7 @@ const routes = [
     },
     {
         path: '/all-recipes',
-        name: 'allRecipes',
+        name: 'AllRecipes',
         component: AllRecipes,
         meta: {
             authRequired: true
@@ -27,7 +28,7 @@ const routes = [
     },
     {
         path: '/add-recipe',
-        name: 'addRecipeForm',
+        name: 'AddRecipeForm',
         component: AddRecipeForm,
         meta: {
             authRequired: true
@@ -35,8 +36,17 @@ const routes = [
     },
     {
         path: '/my-recipes',
-        name: 'myRecipes',
+        name: 'MyRecipes',
         component: MyRecipes,
+        meta: {
+            authRequired: true
+        }
+    },
+    {
+        path: '/recipe-card/:recipeId',
+        name: 'RecipeCard',
+        props: true,
+        component: RecipeCard,
         meta: {
             authRequired: true
         }
