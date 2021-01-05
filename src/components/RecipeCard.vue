@@ -13,6 +13,7 @@
             </div>
             {{recipe.fromTheKitchenOf}}
             {{recipe.description}}
+            {{recipe.serves}}
             {{recipe.prepTime}}
             {{recipe.cookTime}}
             <div v-for='ingredient in recipe.ingredients' :key='ingredient._id'>
