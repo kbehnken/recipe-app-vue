@@ -1,12 +1,16 @@
 <template>
-    <div>
-        <div style='border: 1px solid #000;'>
-            <h1>
-                {{recipe.name}}
-            </h1>
-            {{recipe.description}}
+    <router-link :to="{path: '/recipe-card/' + recipe._id}">
+        <div class='recipe-tile'>
+            <div>
+                <router-link :to="{path: '/recipe-card/' + recipe._id}">
+                    <h1>
+                        {{recipe.name}}
+                    </h1>
+                </router-link>
+                {{recipe.description}}
+            </div>
         </div>
-    </div>
+    </router-link>
 </template>
 
 <script>
