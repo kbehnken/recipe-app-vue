@@ -1,7 +1,9 @@
 <template>
     <div>
         <Header />
-        <RecipeTile v-for='recipe in recipes' v-bind:recipe='recipe' :key='recipe._id' />
+        <div class='outer-content-container'>
+            <RecipeTile v-for='recipe in recipes' v-bind:recipe='recipe' :key='recipe._id' />
+        </div>
     </div>
 </template>
 

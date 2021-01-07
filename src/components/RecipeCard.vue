@@ -1,25 +1,27 @@
 <template>
     <div>
         <Header />
-        <div>
-            <h1>
-                {{recipe.name}}
-            </h1>
-            <div v-if='recipe.isFavorite' v-on:click='handleDeleteFavoriteRecipe'>
-                Remove from favorties
+        <div class='outer-content-container'>
+            <div id='recipe-card'>
+                <h1>
+                    {{recipe.name}}
+                </h1>
+                <div v-if='recipe.isFavorite' v-on:click='handleDeleteFavoriteRecipe'>
+                    Remove from favorties
+                </div>
+                <div v-else v-on:click='handleAddFavoriteRecipe'>
+                    Add to favorties
+                </div>
+                {{recipe.fromTheKitchenOf}}
+                {{recipe.description}}
+                {{recipe.serves}}
+                {{recipe.prepTime}}
+                {{recipe.cookTime}}
+                <div v-for='ingredient in recipe.ingredients' :key='ingredient._id'>
+                    {{ingredient.quantity}} {{ingredient.name}}
+                </div>
+                {{recipe.directions}}
             </div>
-            <div v-else v-on:click='handleAddFavoriteRecipe'>
-                Add to favorties
-            </div>
-            {{recipe.fromTheKitchenOf}}
-            {{recipe.description}}
-            {{recipe.serves}}
-            {{recipe.prepTime}}
-            {{recipe.cookTime}}
-            <div v-for='ingredient in recipe.ingredients' :key='ingredient._id'>
-                {{ingredient.quantity}} {{ingredient.name}}
-            </div>
-            {{recipe.directions}}
         </div>
     </div>
 </template>
