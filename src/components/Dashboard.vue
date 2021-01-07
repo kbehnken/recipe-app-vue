@@ -1,45 +1,57 @@
 <template>
     <div>
         <Header />
-        <h1>
-            Favorite Recipes
-        </h1>
-        <ul>
-            <li v-for='recipe in recipes' :key='recipe._id'>
-                {{recipe.name}}
-            </li>
-        </ul>
-        <h1>
-            Recently Added Recipes
-        </h1>
-        <input v-model='comment' placeholder='Enter comment' />
-        <p>
-            You said, {{comment}}
-        </p>
+        <div class='outer-content-container'>
+            <h1>
+                Favorite Recipes
+            </h1>
+            <RecipeTile v-for='recipe in favoriteRecipes' v-bind:recipe='recipe' :key='recipe._id' />
+            <h1>
+                Recently Added Recipes
+            </h1>
+            <RecipeTile v-for='recipe in recentRecipes' v-bind:recipe='recipe' :key='recipe._id' />
+        </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { authHeader } from '../helpers/authHeader';
+import { getUserInfo } from '../helpers/getUserInfo';
 import Header from './Header';
+import RecipeTile from './RecipeTile';
 
 export default {
     name: 'Dashboard',
     components: {
-        Header: Header
+        Header: Header,
+        RecipeTile: RecipeTile
     },
     props: ['username'],
     data: function () {
         return {
             recipes: [],
+            favoriteRecipes: [],
+            recentRecipes: [],
             comment: ''
         }
     },
     mounted() {
-        axios.get('http://localhost:3030/api/v1/recipes', {headers: authHeader()})
+        const userId = getUserInfo()._id;
+
+        axios.get(`http://localhost:3030/api/v1/recipes/favorites/${userId}`, {headers: authHeader()})
         .then(result => {
-            this.recipes = result.data;
+            this.favoriteRecipes = result.data;
+        })
+        .catch(err => {
+            if (err && err.response.status === 401) {
+                this.$router.push('/login');
+                this.$vToastify.error('Your login is not valid. Please try your login again.');
+            }
+        })
+        axios.get('http://localhost:3030/api/v1/recipes/recent/3', {headers: authHeader()})
+        .then(result => {
+            this.recentRecipes = result.data;
         })
         .catch(err => {
             if (err && err.response.status === 401) {
