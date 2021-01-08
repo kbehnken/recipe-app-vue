@@ -17,11 +17,11 @@
                 <button v-on:click='handleAddIngredient'>
                     +
                 </button>
-                <div v-for='ingredient in ingredients' :key='ingredient.name' style='background-color: #eee; padding: 10px;'>
-                    <draggable v-model='ingredients' name='draggableIngredients'>
-                        {{ingredient.quantity}} {{ingredient.name}}
-                    </draggable>
-                </div>
+                <draggable v-model='ingredients' name='draggableIngredients'>
+                    <div v-for='ingredient in ingredients' :key='ingredient.name' style='background-color: #eee; padding: 10px;'>
+                        {{ingredient.quantity}} {{ingredient.name}} <span v-on:click='handleDeleteIngredient'>-</span>
+                    </div>
+                </draggable>
                 <VTextField outlined v-model='directions' name='directions' placeholder='Directions' />
                 <button v-on:click='handleAddRecipe()'>
                     Save
@@ -66,6 +66,9 @@ export default {
             })
             this.quantity = ''
             this.ingredient = ''
+        },
+        handleDeleteIngredient() {
+            this.ingredients.splice(this.ingredient, 1)
         },
         handleAddRecipe() {
             axios.post('http://localhost:3030/api/v1/recipes', {
