@@ -2,7 +2,7 @@
     <div id='outer-login-container'>
         <div id='login-container'>
             <div>
-                <img src='/assets/broccoli.png' alt='broccoli' />
+                <img src='../assets/broccoli.png' style='width:150px; margin-bottom: 25px;' alt='broccoli' />
             </div>
             <div>
                 <input v-model='email' type='email' name='email' label='Email Address' required autofocus/>
