@@ -27,7 +27,6 @@ export default {
         Header: Header,
         RecipeTile: RecipeTile
     },
-    props: ['username'],
     data: function () {
         return {
             recipes: [],
