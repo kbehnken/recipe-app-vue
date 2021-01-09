@@ -1,15 +1,15 @@
 <template>
     <div>
         <Header />
-        <div class='outer-content-container'>
+        <div class="outer-content-container">
             <h1>
                 Favorite Recipes
             </h1>
-            <RecipeTile v-for='recipe in favoriteRecipes' v-bind:recipe='recipe' :key='recipe._id' />
+            <RecipeTile v-for="recipe in favoriteRecipes" v-bind:recipe="recipe" :key="'favorites_' + recipe._id" />
             <h1>
                 Recently Added Recipes
             </h1>
-            <RecipeTile v-for='recipe in recentRecipes' v-bind:recipe='recipe' :key='recipe._id' />
+            <RecipeTile v-for="recipe in recentRecipes" v-bind:recipe="recipe" :key="'recent_' + recipe._id" />
         </div>
     </div>
 </template>
