@@ -44,6 +44,7 @@ export default {
             }
             if (this.newPassword === this.confirmPassword) {
                 axios.put('http://localhost:3030/api/v1/change-password', {
+                    oldPassword: this.oldPassword,
                     newPassword: this.newPassword
                 },
                 {
