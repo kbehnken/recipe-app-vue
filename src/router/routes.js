@@ -2,10 +2,12 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Dashboard from '../components/Dashboard.vue';
 import AllRecipes from '../components/AllRecipes.vue';
+import UpdateRecipe from '../components/UpdateRecipe.vue';
 import CreateRecipe from '../components/CreateRecipe.vue';
 import MyRecipes from '../components/MyRecipes.vue';
 import RecipeCard from '../components/RecipeCard.vue';
 import ChangePassword from '../components/ChangePassword.vue';
+import SearchResults from '../components/SearchResults.vue';
 import Login from '../components/Login.vue';
 import isLoggedIn from '../helpers/isLoggedIn';
 
@@ -36,6 +38,14 @@ const routes = [
         }
     },
     {
+        path: '/update-recipe',
+        name: 'UpdateRecipe',
+        component: UpdateRecipe,
+        meta: {
+            authRequired: true
+        }
+    },
+    {
         path: '/my-recipes',
         name: 'MyRecipes',
         component: MyRecipes,
@@ -56,6 +66,14 @@ const routes = [
         path: '/change-password',
         name: 'ChangePassword',
         component: ChangePassword,
+        meta: {
+            authRequired: true
+        }
+    },
+    {
+        path: '/search-recipes',
+        name: 'SearchResults',
+        component: SearchResults,
         meta: {
             authRequired: true
         }
