@@ -2,8 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Dashboard from '../components/Dashboard.vue';
 import AllRecipes from '../components/AllRecipes.vue';
-import UpdateRecipe from '../components/UpdateRecipe.vue';
 import CreateRecipe from '../components/CreateRecipe.vue';
+import UpdateRecipe from '../components/UpdateRecipe.vue';
 import MyRecipes from '../components/MyRecipes.vue';
 import RecipeCard from '../components/RecipeCard.vue';
 import ChangePassword from '../components/ChangePassword.vue';
@@ -38,7 +38,7 @@ const routes = [
         }
     },
     {
-        path: '/update-recipe',
+        path: '/update-recipe/:recipeId',
         name: 'UpdateRecipe',
         component: UpdateRecipe,
         meta: {
