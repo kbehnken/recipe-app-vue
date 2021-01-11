@@ -38,7 +38,7 @@ export default {
     mounted() {
         const userId = getUserInfo()._id;
 
-        axios.get(`http://localhost:3030/api/v1/recipes/favorites/${userId}`, {headers: authHeader()})
+        axios.get(`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/recipes/favorites/${userId}`, {headers: authHeader()})
         .then(result => {
             this.favoriteRecipes = result.data;
         })
@@ -48,7 +48,7 @@ export default {
                 this.$vToastify.error('Your login is not valid. Please try your login again.');
             }
         })
-        axios.get('http://localhost:3030/api/v1/recipes/recent/3', {headers: authHeader()})
+        axios.get(`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/recipes/recent/3`, {headers: authHeader()})
         .then(result => {
             this.recentRecipes = result.data;
         })

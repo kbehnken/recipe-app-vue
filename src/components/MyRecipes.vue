@@ -27,7 +27,7 @@ export default {
     },
     mounted() {
         const ownerId = getUserInfo()._id;
-        axios.get(`http://localhost:3030/api/v1/recipes/by-owner-id/${ownerId}`, {headers: authHeader()})
+        axios.get(`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/recipes/by-owner-id/${ownerId}`, {headers: authHeader()})
         .then(result => {
             this.recipes = result.data;
         })
