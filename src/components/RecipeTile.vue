@@ -1,17 +1,19 @@
 <template>
-    <router-link :to="{path: '/recipe-card/' + recipe._id}" style="color: #424242;">
+    
         <div class='recipe-tile'>
+            <router-link :to="{path: '/recipe-card/' + recipe._id}" style="color: #424242;">
             <div>
                 <router-link :to="{path: '/recipe-card/' + recipe._id}">
-                    <img v-bind:src="src" style="height: 225px; maxWidth: 100%;" />
+                    <img v-bind:src="src" style="height: 215px; maxWidth: 100%;" />
                     <h1>
                         {{truncatedRecipeName}}
                     </h1>
                 </router-link>
                 {{truncatedDescription}}
             </div>
+            </router-link>
         </div>
-    </router-link>
+    
 </template>
 
 <script>
