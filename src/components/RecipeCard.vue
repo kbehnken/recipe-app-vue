@@ -1,26 +1,64 @@
 <template>
     <div>
         <Header />
-        <div class='outer-content-container'>
-            <div id='recipe-card'>
-                <h1>
-                    {{recipe.name}}
-                </h1>
-                <div v-if='recipe.isFavorite' v-on:click='handleDeleteFavoriteRecipe'>
-                    Remove from favorties
+        <div class="outer-content-container">
+            <div id="recipe-card">
+                <div class="flex-between">
+                    <h1>
+                        {{recipe.name}}
+                    </h1>
+                    <div>
+                        <div class="float-left">
+                            <router-link :to="`/update-recipe/${this.recipeId}`">
+                                Edit
+                            </router-link>
+                        </div>
+                        <div v-if="recipe.isFavorite" v-on:click="handleDeleteFavoriteRecipe" class="float-left">
+                            Remove from favorties
+                        </div>
+                        <div v-else v-on:click="handleAddFavoriteRecipe" class="float-left">
+                            Add to favorties
+                        </div>
+                    </div>
                 </div>
-                <div v-else v-on:click='handleAddFavoriteRecipe'>
-                    Add to favorties
+                <div style="text-align: center;">
+                    <br /><br />
+                    <img v-bind:src="src" style="max-width: 100%;" />
+                    <br /><br />
                 </div>
                 {{recipe.fromTheKitchenOf}}
                 {{recipe.description}}
                 {{recipe.serves}}
                 {{recipe.prepTime}}
                 {{recipe.cookTime}}
-                <div v-for='ingredient in recipe.ingredients' :key='ingredient._id'>
+                <div>
+                    <label>
+                        INGREDIENTS
+                    </label>
+                </div>
+                <div v-for="ingredient in recipe.ingredients" :key="ingredient._id">
                     {{ingredient.quantity}} {{ingredient.name}}
                 </div>
-                {{recipe.directions}}
+                <div>
+                    <label>
+                        DIRECTIONS
+                    </label>
+                </div>
+                <div>
+                    {{recipe.directions}}
+                </div>
+            </div>
+            <h1>
+                Comments
+            </h1>
+            <div v-if="recipe.comments.length">
+                <div v-for="comment in recipe.comments" :key="comment._id">
+                    Posted by {{comment.owner.firstName}} {{comment.owner.lastName}} on {{comment.createdAt}}<br /><br />
+                    {{comment.comment}}
+                </div>
+            </div>
+            <div v-else>
+                There are currently no comments to display for this recipe. Click here to add one!
             </div>
         </div>
     </div>
@@ -39,7 +77,8 @@ export default {
     },
     data: function () {
         return {
-            recipe: {}
+            recipe: {},
+            src: ''
         }
     },
     mounted() {
@@ -53,6 +92,20 @@ export default {
                 this.$vToastify.error('Your login is not valid. Please try your login again.');
             }
         })
+        const url=`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/recipes/photos/${this.recipeId}`;
+        
+        fetch(url, {headers: authHeader()})
+        .then(async res => {
+            if (res.status === 200) {
+                this.src = URL.createObjectURL(await res.blob());
+                console.log(this.src)
+            } else {
+                console.log(res.status)
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        }) 
     },
     methods: {
         handleAddFavoriteRecipe() {
