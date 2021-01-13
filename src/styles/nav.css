@@ -1,0 +1,91 @@
+a {
+    color: #00b300;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #009800;
+}
+
+button {
+    font-size: 14pt;
+    color: #fff;
+    background-color: #00b300;
+    width: 50%;
+    height: 60px;
+    border: 1px solid #81FF81;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: #009800;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+menu {
+    min-width: 160px;
+    background-color: #fff;
+    display: none;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 900;
+}
+
+menu a {
+    color: #fff;
+    background-color: #00b300;
+    display: block;
+    padding: 10px 15px;
+}
+
+menu div a:hover, .logout:hover {
+    color: #fff;
+    background-color: #009800;
+}
+
+.logout {
+    color: #fff;
+    background-color: #00b300;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+
+.user-icon, .hamburger-icon {
+    color: #00b300;
+    overflow: hidden;
+}
+
+.user-icon:hover, .hamburger-icon:hover {
+    color: #009800;
+}
+
+/* .hamburger-icon {
+    display: none;
+} */
+
+.user-icon:hover menu, .hamburger-icon:hover menu {
+    display: block;
+}
+
+#hamburger-nav {
+    width: 80%;
+    display: none;
+    margin: auto;
+}
+
+@media (max-width: 800px) {
+    #hamburger-nav {
+        display: block;
+    }
+    nav {
+        display: none;
+    }
+}
