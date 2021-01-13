@@ -1,13 +1,24 @@
 <template>
-    <div>
-        <p>
-            Welcome, {{username}}!
-        </p>
+    <header>
+        <div class="flex-between">
+            <div>
+                Welcome, {{username}}!
+            </div>
+            <div>
+                <div class="float-left">
+                    <VTextField outlined v-model="search" name="search" placeholder="Search all recipes" />
+                </div>
+                <div class="float-left" v-on:click="handleSearch()">
+                    Search
+                </div>
+            </div>
+        </div>
         <Nav />
-    </div>
+    </header>
 </template>
 
 <script>
+import { getUserInfo } from '../helpers/getUserInfo';
 import Nav from './Nav';
 
 export default {
@@ -15,6 +26,20 @@ export default {
     components: {
         Nav: Nav
     },
-    props: ['username']
+    data: function () {
+        return {
+            search: ''
+        }
+    },
+    methods: {
+        handleSearch () {
+            return this.$router.push(`/search-recipes?q=${this.search}`);
+        }
+    },
+    computed: {
+        username () {
+            return getUserInfo().firstName;
+        }
+    }
 }
 </script>
