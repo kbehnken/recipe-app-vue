@@ -5,7 +5,7 @@
             <div v-if="queryResults.length">
                 <RecipeTile v-for="recipe in queryResults" v-bind:recipe="recipe" :key="recipe._id" />
             </div>
-            <div v-else style="text-align: center;">
+            <div v-else class="empty">
                 There are no recipes that match your search criteria. <router-link to="/all-recipes">Click here</router-link> to browse all recipes.
             </div>
             
