@@ -1,19 +1,26 @@
 <template>
-    
-        <div class='recipe-tile'>
-            <router-link :to="{path: '/recipe-card/' + recipe._id}" style="color: #424242;">
+    <div class='recipe-tile'>
+        <router-link :to="{path: '/recipe-card/' + recipe._id}" style="color: #424242;">
             <div>
-                <router-link :to="{path: '/recipe-card/' + recipe._id}">
+                <div v-if="src && src.length > 0">
                     <img v-bind:src="src" style="height: 215px; maxWidth: 100%;" />
-                    <h1>
+                </div>
+                 <div v-else>
+                    <div id='no-photo-container'>
+                        NO PHOTO AVAILABLE
+                    </div>
+                </div>
+                <router-link :to="{path: '/recipe-card/' + recipe._id}">
+                    <h1 :title="recipe.name">
                         {{truncatedRecipeName}}
                     </h1>
                 </router-link>
-                {{truncatedDescription}}
+                <p  :title="recipe.description">
+                    {{truncatedDescription}}
+                </p>
             </div>
-            </router-link>
-        </div>
-    
+        </router-link>
+    </div>
 </template>
 
 <script>
