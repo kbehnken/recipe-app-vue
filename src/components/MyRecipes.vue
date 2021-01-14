@@ -2,10 +2,10 @@
     <div>
         <Header />
         <div class='outer-content-container'>
-            <div v-if="recipes.length">
+            <div v-if="recipes && recipes.length > 0">
                 <RecipeTile v-for='recipe in recipes' v-bind:recipe='recipe' :key='recipe._id' />
             </div>
-            <div v-else style="text-align: center;">
+            <div v-else class="empty">
                 You have not contributed any recipes to the recipe box. <router-link to="/add-recipe">Click here</router-link> to add a recipe.
             </div>
             
