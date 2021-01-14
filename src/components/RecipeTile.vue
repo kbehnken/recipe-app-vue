@@ -53,17 +53,17 @@ export default {
     computed: {
         truncatedRecipeName() {
             const { name } = this.recipe
-            if (name.length <= 20) {
+            if (name.length <= 11) {
                 return name;
             }
-            return name.slice(0, 20) + '...';
+            return name.slice(0, 11) + '...';
         },
         truncatedDescription() {
             const { description } = this.recipe
-            if (description.length <= 20) {
+            if (description.length <= 80) {
                 return description;
             }
-            return description.slice(0, 90) + '...';
+            return description.slice(0, 80) + '...';
         },
         imgSrc() {
             return this.src;
