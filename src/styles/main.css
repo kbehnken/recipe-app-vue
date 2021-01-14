@@ -120,6 +120,10 @@ img {
     overflow-wrap: break-word;
 }
 
+.comment {
+    margin-bottom: 25px;
+}
+    
 .empty {
     text-align: center;
     padding: 25px 0px 25px;
