@@ -5,16 +5,18 @@
             <h1>
                 Favorite Recipes
             </h1>
-            <div v-if="favoriteRecipes.length">
+            <div v-if="favoriteRecipes && favoriteRecipes.length > 0" class="flex-between-wrap">
                 <RecipeTile v-for="recipe in favoriteRecipes" v-bind:recipe="recipe" :key="'favorites_' + recipe._id" />
             </div>
-            <div v-else style="text-align: center;">
+            <div v-else class="empty">
                 You have no favorite recipes to display. <router-link to="/all-recipes">Click here</router-link> to browse all recipes.
             </div>
             <h1>
                 Recently Added Recipes
             </h1>
-            <RecipeTile v-for="recipe in recentRecipes" v-bind:recipe="recipe" :key="'recent_' + recipe._id" />
+            <div class="flex-between-wrap">
+                <RecipeTile v-for="recipe in recentRecipes" v-bind:recipe="recipe" :key="'recent_' + recipe._id" />
+            </div>
         </div>
     </div>
 </template>
