@@ -18,7 +18,7 @@
                     {{ingredient.quantity}} {{ingredient.name}} <span v-on:click="handleDeleteIngredient(index)">-</span>
                 </div>
             </draggable>
-            <VTextField outlined v-model="recipe.directions" name="directions" placeholder="Directions" />
+            <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" />
             <div>
                 <VFileInput v-model="photo"/><br /><br />
                 <br /><br />
