@@ -7,7 +7,14 @@
                 </div>
                  <div v-else>
                     <div id='no-photo-container'>
-                        NO PHOTO AVAILABLE
+                        <div>
+                            <v-icon id="camera">
+                                mdi-camera
+                            </v-icon>
+                        </div>
+                        <div>
+                            NO PHOTO AVAILABLE
+                        </div>
                     </div>
                 </div>
                 <router-link :to="{path: '/recipe-card/' + recipe._id}">
