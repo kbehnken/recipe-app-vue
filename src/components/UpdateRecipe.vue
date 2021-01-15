@@ -11,12 +11,15 @@
                 <VTextField outlined v-model="recipe.cookTime" name="cookTime" placeholder="Cook Time" />
                 <VTextField outlined v-model="quantity" name="quantity" placeholder="Quantity" />
                 <VTextField outlined v-model="ingredient" name="ingredient" placeholder="Ingredient" />
-                <button v-on:click="handleAddIngredient">
-                    +
-                </button>
+                <v-icon x-large v-on:click="handleAddIngredient" title="Add an ingredient">
+                    mdi-plus-box
+                </v-icon>
                 <draggable v-model="recipe.ingredients" name="draggableIngredients">
                     <div v-for="(ingredient, index) in recipe.ingredients" :key="ingredient.name" class="ingredient-container">
-                        {{ingredient.quantity}} {{ingredient.name}} <span v-on:click="handleDeleteIngredient(index)">-</span>
+                        {{ingredient.quantity}} {{ingredient.name}}
+                        <v-icon medium v-on:click="handleDeleteIngredient(index)" title="Delete ingredient">
+                            mdi-minus-box
+                        </v-icon>
                     </div>
                 </draggable>
                 <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" />
