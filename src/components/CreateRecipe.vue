@@ -25,19 +25,18 @@
                 <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" />
                 <div>
                     <label>Upload Photo:</label><br />
-                    <span className='fine-print'>
+                    <span className="fine-print">
                         (.jpg, .gif, .png)<br />
                     </span>
                 </div>
                 <div>
-                    <VFileInput v-model="photo" name='photo' /><br /><br />
+                    <VFileInput v-model="photo" name="photo" /><br /><br />
                     <br /><br />
                 </div>
                 <div>
-                    <VCheckbox v-model="recipe.isShared" />
-                    <label>Publish?</label>
+                    <VCheckbox v-model="recipe.isShared" label="Check this box to make your recipe visible to all recipe-box users." />
                 </div>
-                <button v-on:click='handleAddRecipe()'>
+                <button v-on:click="handleAddRecipe()" class="form-button">
                     Save
                 </button>
             </div>
@@ -114,22 +113,3 @@ export default {
     }
 }
 </script>
-
-<style>
-    button {
-        font-size: 14pt;
-        color: #fff;
-        background-color: #00b300;
-        width: 50%;
-        height: 60px;
-        border: 1px solid #81FF81;
-        border-radius: 5px;
-        margin-top: 10px;
-        padding: 5px;
-    }
-
-    button:hover {
-        background-color: #009800;
-        cursor: pointer;
-    }
-</style>
