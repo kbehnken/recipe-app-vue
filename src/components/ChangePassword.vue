@@ -1,15 +1,15 @@
 <template>
     <div>
         <Header />
-        <div class='outer-content-container'>
-            <p>
-                Fill out the form below and click the Save button to change your recipe box password.
+        <div class="outer-content-container">
+            <p style="text-align: center;">
+                Fill out the form below and click the Add button to add a new recipe to the recipe box.<br /><br />
             </p>
-            <div class='form-container'>
-                <VTextField outlined v-model='oldPassword' name='oldPassword' placeholder='Old Password' />
-                <VTextField outlined v-model='newPassword' name='newPassword' placeholder='New Password' />
-                <VTextField outlined v-model='confirmPassword' name='confirmPassword' placeholder='Confirm Password' />
-                <button v-on:click='handleChangePassword()'>
+            <div class="form-container">
+                <VTextField outlined type="password" v-model="oldPassword" name="oldPassword" placeholder="Old Password" />
+                <VTextField outlined type="password" v-model="newPassword" name="newPassword" placeholder="New Password" />
+                <VTextField outlined type="password" v-model="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
+                <button v-on:click="handleChangePassword()">
                     Save
                 </button>
             </div>
