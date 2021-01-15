@@ -25,10 +25,9 @@
                     <br /><br />
                 </div>
                 <div>
-                    <VCheckbox v-model="recipe.isShared"/>
-                    <label>Publish?</label>
+                    <VCheckbox v-model="recipe.isShared" label="Check this box to make your recipe visible to all recipe-box users." />
                 </div>
-                <button v-on:click="handleUpdateRecipe">
+                <button v-on:click="handleUpdateRecipe" class="form-button">
                     Save
                 </button>
             </div>
