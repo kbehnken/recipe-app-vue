@@ -8,6 +8,9 @@
                         {{recipe.name}}
                     </h1>
                     <div>
+                        <div v-on:click="handlePrint" class="float-left">
+                            Print
+                        </div>
                         <div class="float-left">
                             <router-link :to="`/update-recipe/${this.recipeId}`">
                                 Edit
@@ -55,6 +58,7 @@
 
 <script>
 import axios from 'axios';
+import printjs from 'print-js';
 import { authHeader } from '../helpers/authHeader';
 import Header from './Header';
 import Comments from './Comments';
@@ -142,6 +146,9 @@ export default {
                     this.$router.push('/login');
                 }
             })
+        },
+        handlePrint() {
+            printjs('recipe-card', 'html')
         }
     }
 }
