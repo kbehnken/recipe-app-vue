@@ -29,8 +29,10 @@
                     <img v-bind:src="src" style="max-width: 100%;" />
                     <br /><br />
                 </div>
+                <div style="text-align: center;">
+                    {{recipe.description}}
+                </div>
                 {{recipe.fromTheKitchenOf}}
-                {{recipe.description}}
                 {{recipe.serves}}
                 {{recipe.prepTime}}
                 {{recipe.cookTime}}
