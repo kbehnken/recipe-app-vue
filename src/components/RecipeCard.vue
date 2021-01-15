@@ -8,20 +8,22 @@
                         {{recipe.name}}
                     </h1>
                     <div>
-                        <div v-on:click="handlePrint" class="float-left">
-                            Print
-                        </div>
+                        <v-icon medium v-on:click="handlePrint" class="float-left" title="Print recipe">
+                            mdi-printer
+                        </v-icon>
                         <div class="float-left">
                             <router-link :to="`/update-recipe/${this.recipeId}`">
-                                Edit
+                                <v-icon class="float-left" title="Edit recipe">
+                            mdi-pencil
+                        </v-icon>
                             </router-link>
                         </div>
-                        <div v-if="recipe.isFavorite" v-on:click="handleDeleteFavoriteRecipe" class="float-left">
-                            Remove from favorties
-                        </div>
-                        <div v-else v-on:click="handleAddFavoriteRecipe" class="float-left">
-                            Add to favorties
-                        </div>
+                        <v-icon medium v-if="recipe.isFavorite" v-on:click="handleDeleteFavoriteRecipe" color="red" class="float-left" title="Remove from favorites">
+                            mdi-heart
+                        </v-icon>
+                        <v-icon v-else v-on:click="handleAddFavoriteRecipe" class="float-left" title="Love this recipe? Click to add it to your favorites!">
+                            mdi-heart-outline
+                        </v-icon>
                     </div>
                 </div>
                 <div style="text-align: center;">

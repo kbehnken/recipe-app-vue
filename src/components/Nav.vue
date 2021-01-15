@@ -14,9 +14,9 @@
                 My Recipes
             </router-link>
             <div class="user-icon">
-                <div v-on:click="toggleMenuVisibility()" style="cursor: pointer;">
-                    User Menu
-                </div>
+                <v-icon medium v-on:click="toggleMenuVisibility()">
+                    mdi-account
+                </v-icon>
                 <div v-if="showMenu">
                     <menu>
                         <div>

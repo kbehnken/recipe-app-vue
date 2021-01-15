@@ -8,9 +8,9 @@
                 <div class="float-left">
                     <VTextField outlined v-model="search" name="search" placeholder="Search all recipes" />
                 </div>
-                <div class="float-left" v-on:click="handleSearch()">
-                    Search
-                </div>
+                <v-icon medium v-on:click="handleSearch()" class="float-left">
+                    mdi-magnify
+                </v-icon>
             </div>
         </div>
         <Nav />
