@@ -44,22 +44,11 @@
                         DIRECTIONS
                     </label>
                 </div>
-                <div>
+                <div class="directions">
                     {{recipe.directions}}
                 </div>
             </div>
-            <h1>
-                Comments
-            </h1>
-            <div v-if="recipe.comments.length">
-                <div v-for="comment in recipe.comments" :key="comment._id">
-                    Posted by {{comment.owner.firstName}} {{comment.owner.lastName}} on {{comment.createdAt}}<br /><br />
-                    {{comment.comment}}
-                </div>
-            </div>
-            <div v-else>
-                There are currently no comments to display for this recipe. Click here to add one!
-            </div>
+            <Comments v-bind:recipeId="recipeId" v-bind:comments="recipe.comments" @refresh="handleLoadRecipe" />
         </div>
     </div>
 </template>
@@ -68,12 +57,16 @@
 import axios from 'axios';
 import { authHeader } from '../helpers/authHeader';
 import Header from './Header';
+import Comments from './Comments';
 
 export default {
     name: 'RecipeCard',
-    props: ['recipeId'],
+    props: {
+        recipeId: String
+    },
     components: {
-        Header: Header
+        Header: Header,
+        Comments: Comments
     },
     data: function () {
         return {
@@ -82,32 +75,38 @@ export default {
         }
     },
     mounted() {
-        axios.get(`http://localhost:3030/api/v1/recipes/by-recipe-id/${this.recipeId}`, {headers: authHeader()})
-        .then(result => {
-            this.recipe = result.data;
-        })
-        .catch(err => {
-            if (err && err.response.status === 401) {
-                this.$router.push('/login');
-                this.$vToastify.error('Your login is not valid. Please try your login again.');
-            }
-        })
-        const url=`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/recipes/photos/${this.recipeId}`;
-        
-        fetch(url, {headers: authHeader()})
-        .then(async res => {
-            if (res.status === 200) {
-                this.src = URL.createObjectURL(await res.blob());
-                console.log(this.src)
-            } else {
-                console.log(res.status)
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        }) 
+        this.handleLoadRecipe();
+        this.handleLoadPhoto();
     },
     methods: {
+        handleLoadRecipe() {
+            axios.get(`http://localhost:3030/api/v1/recipes/by-recipe-id/${this.recipeId}`, {headers: authHeader()})
+            .then(result => {
+                this.recipe = result.data;
+            })
+            .catch(err => {
+                if (err && err.response.status === 401) {
+                    this.$router.push('/login');
+                    this.$vToastify.error('Your login is not valid. Please try your login again.');
+                }
+            })
+        },
+        handleLoadPhoto() {
+            const url=`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/recipes/photos/${this.recipeId}`;
+            
+            fetch(url, {headers: authHeader()})
+            .then(async res => {
+                if (res.status === 200) {
+                    this.src = URL.createObjectURL(await res.blob());
+                    console.log(this.src)
+                } else {
+                    console.log(res.status)
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            }) 
+        },
         handleAddFavoriteRecipe() {
             axios.post('http://localhost:3030/api/v1/recipes/favorites', {
                 recipeId: this.recipeId
