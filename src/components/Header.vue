@@ -6,7 +6,7 @@
             </div>
             <div>
                 <div class="float-left">
-                    <VTextField outlined v-model="search" name="search" placeholder="Search all recipes" />
+                    <VTextField outlined type="search" v-model="search" name="search" placeholder="Search all recipes" dense />
                 </div>
                 <v-icon medium v-on:click="handleSearch()" class="float-left">
                     mdi-magnify
