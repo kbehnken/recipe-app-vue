@@ -6,11 +6,14 @@
             </div>
             <div>
                 <div class="float-left">
-                    <VTextField outlined type="search" v-model="search" name="search" placeholder="Search all recipes" dense />
+                    <VTextField outlined dense type="search" v-model="search" name="search" placeholder="Search all recipes">
+                        <template v-slot:append>
+                            <v-icon medium v-on:click="handleSearch()" class="float-left magnify-glass" color="#00b300">
+                                mdi-magnify
+                            </v-icon>
+                        </template>
+                    </VTextField>
                 </div>
-                <v-icon medium v-on:click="handleSearch()" class="float-left">
-                    mdi-magnify
-                </v-icon>
             </div>
         </div>
         <Nav />
