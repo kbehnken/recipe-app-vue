@@ -11,6 +11,9 @@
             <div v-else class="empty">
                 You have no favorite recipes to display. <router-link to="/all-recipes">Click here</router-link> to browse all recipes.
             </div>
+            <div>
+                <hr />
+            </div>
             <h1>
                 Recently Added Recipes
             </h1>
@@ -29,7 +32,7 @@ import Header from './Header';
 import RecipeTile from './RecipeTile';
 
 export default {
-    name: 'Dashboard',
+    name: 'Home',
     components: {
         Header: Header,
         RecipeTile: RecipeTile

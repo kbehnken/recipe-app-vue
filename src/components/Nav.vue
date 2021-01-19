@@ -2,7 +2,9 @@
     <div>
         <nav>
             <router-link to="/">
-                Dashboard
+                <v-icon medium color="#00b300">
+                    mdi-home
+                </v-icon>
             </router-link>
             <router-link to="/all-recipes">
                 Browse All Recipes
@@ -14,7 +16,7 @@
                 My Recipes
             </router-link>
             <div class="user-icon">
-                <v-icon medium v-on:click="toggleMenuVisibility()">
+                <v-icon medium v-on:click="toggleMenuVisibility()" color="#00b300">
                     mdi-account
                 </v-icon>
                 <div v-if="showMenu">
@@ -34,14 +36,14 @@
         </nav>
         <div id="hamburger-nav">
             <div class="hamburger-icon" style="width: 18px">
-                <div v-on:click="toggleMenuVisibility()" style="cursor: pointer;">
-                    Hamburger Menu 
-                </div>
+                <v-icon medium v-on:click="toggleMenuVisibility()" color="#00b300">
+                    mdi-menu
+                </v-icon>
                 <div v-if="showMenu">
                     <menu>
                         <div>
                             <router-link to="/">
-                                Dashboard
+                                Home
                             </router-link>
                         </div>
                         <div>

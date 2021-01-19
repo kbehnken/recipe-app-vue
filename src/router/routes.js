@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Dashboard from '../components/Dashboard.vue';
+import Home from '../components/Home.vue';
 import AllRecipes from '../components/AllRecipes.vue';
 import CreateRecipe from '../components/CreateRecipe.vue';
 import UpdateRecipe from '../components/UpdateRecipe.vue';
@@ -15,8 +15,8 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        name: 'Dashboard',
-        component: Dashboard,
+        name: 'Home',
+        component: Home,
         meta: {
             authRequired: true
         }
