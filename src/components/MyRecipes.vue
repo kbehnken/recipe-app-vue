@@ -1,14 +1,29 @@
 <template>
     <div>
         <Header />
-        <div class='outer-content-container'>
-            <div v-if="recipes && recipes.length > 0">
-                <RecipeTile v-for='recipe in recipes' v-bind:recipe='recipe' :key='recipe._id' />
+        <div class="outer-content-container">
+            <div>
+                <h1>
+                    Published
+                </h1>
+                <div v-if="sharedRecipes && sharedRecipes.length > 0">
+                    <RecipeTile v-for="recipe in sharedRecipes" v-bind:recipe="recipe" :key="recipe._id" />
+                </div>
+                <div v-else class="empty">
+                    You have not contributed any recipes to the recipe box. <router-link to="/add-recipe">Click here</router-link> to add a recipe.
+                </div>
             </div>
-            <div v-else class="empty">
-                You have not contributed any recipes to the recipe box. <router-link to="/add-recipe">Click here</router-link> to add a recipe.
+            <div>
+                <h1>
+                    Drafts
+                </h1>
+                <div v-if="draftRecipes && draftRecipes.length > 0">
+                    <RecipeTile v-for="recipe in draftRecipes" v-bind:recipe="recipe" :key="recipe._id" />
+                </div>
+                <div v-else class="empty">
+                    You do not have any unpublished recipes to display. <router-link to="/add-recipe">Click here</router-link> to add a recipe.
+                </div>
             </div>
-            
         </div>
     </div>
 </template>
@@ -44,6 +59,14 @@ export default {
                 this.$vToastify.error('Your login is not valid. Please try your login again.');
             }
         })
+    },
+    computed: {
+        sharedRecipes() {
+            return this.recipes.filter(recipe => recipe.isShared)
+        },
+        draftRecipes() {
+            return this.recipes.filter(recipe => !recipe.isShared)
+        }
     }
 }
 </script>
