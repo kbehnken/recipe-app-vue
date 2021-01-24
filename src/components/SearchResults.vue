@@ -2,7 +2,7 @@
     <div>
         <Header />
         <div class="outer-content-container">
-            <div v-if="queryResults.length">
+            <div v-if="queryResults && queryResults.length > 0">
                 <RecipeTile v-for="recipe in queryResults" v-bind:recipe="recipe" :key="recipe._id" />
             </div>
             <div v-else class="empty">
