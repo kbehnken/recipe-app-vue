@@ -11,17 +11,15 @@
                         <v-icon medium v-on:click="handlePrint" class="float-left" title="Print recipe">
                             mdi-printer
                         </v-icon>
-                        <div class="float-left">
-                            <router-link :to="`/update-recipe/${this.recipeId}`">
-                                <v-icon class="float-left" title="Edit recipe">
-                            mdi-pencil
-                        </v-icon>
-                            </router-link>
-                        </div>
-                        <v-icon medium v-if="recipe.isFavorite" v-on:click="handleDeleteFavoriteRecipe" color="red" class="float-left" title="Remove from favorites">
+                        <router-link :to="`/update-recipe/${this.recipeId}`">
+                            <v-icon class="float-left" title="Edit recipe">
+                                mdi-pencil
+                            </v-icon>
+                        </router-link>
+                        <v-icon medium v-if="recipe.isFavorite" v-on:click="handleDeleteFavoriteRecipe" color="#ff0000" class="float-left" title="Remove from favorites">
                             mdi-heart
                         </v-icon>
-                        <v-icon v-else v-on:click="handleAddFavoriteRecipe" class="float-left" title="Love this recipe? Click to add it to your favorites!">
+                        <v-icon v-else v-on:click="handleAddFavoriteRecipe" class="float-left" color="#ff0000" title="Love this recipe? Click to add it to your favorites!">
                             mdi-heart-outline
                         </v-icon>
                     </div>
@@ -55,6 +53,7 @@
                     {{recipe.directions}}
                 </div>
             </div>
+            <hr />
             <Comments v-bind:recipeId="recipeId" v-bind:comments="recipe.comments" @refresh="handleLoadRecipe" />
         </div>
     </div>
@@ -78,7 +77,7 @@ export default {
     },
     data: function () {
         return {
-            recipe: {},
+            recipe: {comments: []},
             src: ''
         }
     },
