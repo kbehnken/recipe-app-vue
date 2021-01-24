@@ -6,9 +6,60 @@
                 Fill out the form below and click the Save button to change your recipe box password.<br /><br />
             </p>
             <div class="form-container">
-                <VTextField outlined type="password" v-model="oldPassword" name="oldPassword" placeholder="Old Password" />
-                <VTextField outlined type="password" v-model="newPassword" name="newPassword" placeholder="New Password" />
-                <VTextField outlined type="password" v-model="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
+                <div v-if="showOldPassword === false">
+                    <VTextField outlined type="password" v-model="oldPassword" name="oldPassword" placeholder="Old Password">
+                        <template v-slot:append>
+                            <v-icon medium v-on:click="toggleOldPasswordVisibility()" color="#00b300">
+                                mdi-eye
+                            </v-icon>
+                        </template>
+                    </VTextField>
+                </div>
+                <div v-else>
+                    <VTextField outlined type="text" v-model="oldPassword" name="oldPassword" placeholder="Old Password">
+                        <template v-slot:append>
+                            <v-icon medium v-on:click="toggleOldPasswordVisibility()" color="#00b300">
+                                mdi-eye-off
+                            </v-icon>
+                        </template>
+                    </VTextField>
+                </div>
+                <div v-if="showNewPassword === false">
+                    <VTextField outlined type="password" v-model="newPassword" name="newPassword" placeholder="New Password">
+                        <template v-slot:append>
+                            <v-icon medium v-on:click="toggleNewPasswordVisibility" color="#00b300">
+                                mdi-eye
+                            </v-icon>
+                        </template>
+                    </VTextField>
+                </div>
+                <div v-else>
+                    <VTextField outlined type="text" v-model="newPassword" name="newPassword" placeholder="New Password">
+                        <template v-slot:append>
+                            <v-icon medium v-on:click="toggleNewPasswordVisibility" color="#00b300">
+                                mdi-eye-off
+                            </v-icon>
+                        </template>
+                    </VTextField>
+                </div>
+                <div v-if="showConfirmPassword === false">
+                    <VTextField outlined type="password" v-model="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                        <template v-slot:append>
+                            <v-icon medium v-on:click="toggleConfirmPasswordVisibility" color="#00b300">
+                                mdi-eye
+                            </v-icon>
+                        </template>
+                    </VTextField>
+                </div>
+                <div v-else>
+                    <VTextField outlined type="text" v-model="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                        <template v-slot:append>
+                            <v-icon medium v-on:click="toggleConfirmPasswordVisibility" color="#00b300">
+                                mdi-eye-off
+                            </v-icon>
+                        </template>
+                    </VTextField>
+                </div>
                 <button v-on:click="handleChangePassword()" class="form-button">
                     Save
                 </button>
@@ -62,6 +113,15 @@ export default {
                     }
                 })
             }
+        },
+        toggleOldPasswordVisibility() {
+            return this.showOldPassword = !this.showOldPassword;
+        },
+        toggleNewPasswordVisibility() {
+            return this.showNewPassword = !this.showNewPassword;
+        },
+        toggleConfirmPasswordVisibility() {
+            return this.showConfirmPassword = !this.showConfirmPassword;
         }
     }
 }
