@@ -6,26 +6,26 @@
                 Fill out the form below and click the Add button to add a new recipe to the recipe box.<br /><br />
             </p>
             <div class="form-container">  
-                <VTextField outlined v-model="recipe.name" name="name" placeholder="Recipe Name" />
+                <VTextField outlined required v-model="recipe.name" name="name" placeholder="Recipe Name *" />
                 <VTextField outlined v-model="recipe.fromTheKitchenOf" name="fromTheKitchenOf" placeholder="From the kitchen of" />
                 <VTextField outlined v-model="recipe.description" name="description" placeholder="Description" />
-                <VTextField outlined v-model="recipe.serves" name="serves" placeholder="Serves" />
-                <VTextField outlined v-model="recipe.prepTime" name="prepTime" placeholder="Prep Time" />
-                <VTextField outlined v-model="recipe.cookTime" name="cookTime" placeholder="Cook Time" />
-                <VTextField outlined v-model="quantity" name="quantity" placeholder="Quantity" />
-                <VTextField outlined v-model="ingredient" name="ingredient" placeholder="Ingredient" />
-                <v-icon x-large v-on:click="handleAddIngredient" title="Add an ingredient">
+                <VTextField outlined v-model="recipe.serves" name="serves" placeholder="Serves" class="float-left" />
+                <VTextField outlined required v-model="recipe.prepTime" name="prepTime" placeholder="Prep Time *" class="float-left" />
+                <VTextField outlined required v-model="recipe.cookTime" name="cookTime" placeholder="Cook Time *" />
+                <VTextField outlined v-model="quantity" name="quantity" placeholder="Quantity" class="float-left" />
+                <VTextField outlined v-model="ingredient" name="ingredient" placeholder="Ingredient" class="float-left" />
+                <v-icon x-large v-on:click="handleAddIngredient" title="Add an ingredient" color="#00b300">
                     mdi-plus-box
                 </v-icon>
                 <draggable v-model="recipe.ingredients" name="draggableIngredients">
-                    <div v-for="(ingredient, index) in recipe.ingredients" :key="ingredient.name" class="ingredient-container">
+                    <div v-for="(ingredient, index) in recipe.ingredients" :key="ingredient.name" class="ingredient-container flex-between">
                         {{ingredient.quantity}} {{ingredient.name}}
-                        <v-icon medium v-on:click="handleDeleteIngredient(index)" title="Delete ingredient">
+                        <v-icon medium v-on:click="handleDeleteIngredient(index)" title="Delete ingredient" color="#00b300">
                             mdi-minus-box
                         </v-icon>
                     </div>
                 </draggable>
-                <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" />
+                <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" class="directions" />
                 <div>
                     <label>Upload Photo:</label><br />
                     <span className="fine-print">
@@ -92,26 +92,28 @@ export default {
         },
         handleAddRecipe() {
             let formData = new FormData();
-            console.log(this.recipe)
 
             formData.append('recipe', JSON.stringify(this.recipe))
             formData.append('photo', this.photo)
-
-            axios.post(`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/recipes`, formData, {
-                headers: authHeader()
-            }
-            )
-            .then(() => {
-                this.$vToastify.success('You successfully added ' + this.recipeName + ' to the Recipe Box.')
-                this.$router.push('/');
-            })
-            .catch(err => {
-                console.log(err);
-                if (err && err.response.status === 401) {
-                    this.$vToastify.error('Something went wrong.');
-                    this.$router.push('/login');
+            if (this.recipe.name && this.recipe.prepTime && this.recipe.cookTime) {
+                axios.post(`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/recipes`, formData, {
+                    headers: authHeader()
                 }
-            })
+                )
+                .then(() => {
+                    this.$vToastify.success('You successfully added ' + this.recipe.name + ' to the Recipe Box.')
+                    this.$router.push('/');
+                })
+                .catch(err => {
+                    console.log(err);
+                    if (err && err.response.status === 401) {
+                        this.$vToastify.error('Something went wrong.');
+                        this.$router.push('/login');
+                    }
+                })
+            } else {
+                this.$vToastify.error('Please complete all required fields.');
+            }
         }
     }
 }
