@@ -7,7 +7,7 @@
             </p>
             <div class="form-container">
                 <div v-if="showOldPassword === false">
-                    <VTextField outlined type="password" v-model="oldPassword" name="oldPassword" placeholder="Old Password">
+                    <VTextField outlined type="password" v-model="oldPassword" name="oldPassword" placeholder="Enter Old Password" autocomplete="off" autofocus>
                         <template v-slot:append>
                             <v-icon medium v-on:click="toggleOldPasswordVisibility()" color="#00b300">
                                 mdi-eye
@@ -16,7 +16,7 @@
                     </VTextField>
                 </div>
                 <div v-else>
-                    <VTextField outlined type="text" v-model="oldPassword" name="oldPassword" placeholder="Old Password">
+                    <VTextField outlined type="text" v-model="oldPassword" name="oldPassword" placeholder="Enter Old Password" autocomplete="off">
                         <template v-slot:append>
                             <v-icon medium v-on:click="toggleOldPasswordVisibility()" color="#00b300">
                                 mdi-eye-off
@@ -25,7 +25,7 @@
                     </VTextField>
                 </div>
                 <div v-if="showNewPassword === false">
-                    <VTextField outlined type="password" v-model="newPassword" name="newPassword" placeholder="New Password">
+                    <VTextField outlined type="password" v-model="newPassword" name="newPassword" placeholder="Enter New Password" autocomplete="off">
                         <template v-slot:append>
                             <v-icon medium v-on:click="toggleNewPasswordVisibility" color="#00b300">
                                 mdi-eye
@@ -34,7 +34,7 @@
                     </VTextField>
                 </div>
                 <div v-else>
-                    <VTextField outlined type="text" v-model="newPassword" name="newPassword" placeholder="New Password">
+                    <VTextField outlined type="text" v-model="newPassword" name="newPassword" placeholder="Enter New Password" autocomplete="off">
                         <template v-slot:append>
                             <v-icon medium v-on:click="toggleNewPasswordVisibility" color="#00b300">
                                 mdi-eye-off
@@ -43,7 +43,7 @@
                     </VTextField>
                 </div>
                 <div v-if="showConfirmPassword === false">
-                    <VTextField outlined type="password" v-model="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                    <VTextField outlined type="password" v-model="confirmPassword" name="confirmPassword" placeholder="Enter Confirm Password" autocomplete="off">
                         <template v-slot:append>
                             <v-icon medium v-on:click="toggleConfirmPasswordVisibility" color="#00b300">
                                 mdi-eye
@@ -52,7 +52,7 @@
                     </VTextField>
                 </div>
                 <div v-else>
-                    <VTextField outlined type="text" v-model="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                    <VTextField outlined type="text" v-model="confirmPassword" name="confirmPassword" placeholder="Enter Confirm Password" autocomplete="off">
                         <template v-slot:append>
                             <v-icon medium v-on:click="toggleConfirmPasswordVisibility" color="#00b300">
                                 mdi-eye-off
