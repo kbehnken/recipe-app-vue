@@ -1,16 +1,6 @@
 import Vue from 'vue';
-import Vuetify from 'vuetify';
-import { 
-    VTextField,
-    VMain
-} from 'vuetify/lib';
+import Vuetify from 'vuetify/lib';
 
-Vue.use(Vuetify, {
-    components: {
-        VTextField,
-        VMain
-    }
-});
+Vue.use(Vuetify);
 
-export default new Vuetify({
-});
+export default new Vuetify;
