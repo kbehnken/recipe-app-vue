@@ -36,7 +36,12 @@ export default {
     },
     methods: {
         handleSearch () {
-            return this.$router.push(`/search-recipes?q=${this.search}`);
+            return this.$router.push(`/search-recipes?q=${this.search}`)
+            // Prevent duplicate nav error in console when
+            // performing the same search twice in a row
+            .catch(() => {
+                return
+            });
         }
     },
     computed: {
