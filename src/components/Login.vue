@@ -1,17 +1,33 @@
 <template>
-    <div id='outer-login-container'>
-        <div id='login-container'>
+    <div id="outer-login-container">
+        <div id="login-container">
             <div>
-                <img src='../assets/broccoli.png' style='width:150px; margin-bottom: 25px;' alt='broccoli' />
+                <img src="../assets/broccoli.png" alt="broccoli" style="width: 150px;
+        margin-bottom: 10px;" />
             </div>
             <div>
-                <input v-model='email' type='email' name='email' label='Email Address' required autofocus/>
+                <VTextField outlined type="email" v-model="email" name="email" placeholder="Enter Email Address" autofocus hide-details />
+            </div>
+            <div v-if="showPassword === false">
+                <VTextField outlined type="password" v-model="password" name="password" placeholder="Enter Password" hide-details>
+                    <template v-slot:append>
+                        <v-icon medium v-on:click="togglePasswordVisibility" color="#00b300">
+                            mdi-eye
+                        </v-icon>
+                    </template>
+                </VTextField>
+            </div>
+            <div v-else>
+                <VTextField outlined type="text" v-model="password" name="password" placeholder="Enter Password" hide-details>
+                    <template v-slot:append>
+                        <v-icon medium v-on:click="togglePasswordVisibility" color="#00b300">
+                            mdi-eye-off
+                        </v-icon>
+                    </template>
+                </VTextField>
             </div>
             <div>
-                <input v-model='password' type='password' name='password' label='Password' required />
-            </div>
-            <div>
-                <button v-on:click='handleLogin'>
+                <button v-on:click="handleLogin" class="form-button">
                     Login
                 </button>
             </div>
@@ -28,7 +44,8 @@ export default {
         return {
             users: {},
             email: '',
-            password: ''
+            password: '',
+            showPassword: false,
         }
     },
     methods: {
@@ -43,7 +60,10 @@ export default {
                 console.log(err);
                 this.$vToastify.error('Login Failed.');
             })
-        }
+        },
+        togglePasswordVisibility() {
+            return this.showPassword = !this.showPassword;
+        },
     }
 }
 </script>
