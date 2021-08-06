@@ -90,4 +90,14 @@ export default {
     #login-container div {
         margin: 0px 0px 10px;
     }
+
+    @media only screen and (max-width: 411px) {
+        #outer-login-container {
+            width: 100%;
+        }
+        #login-container {
+            width: 90%;
+            height: 90%;
+        }
+    }
 </style>
