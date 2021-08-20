@@ -6,7 +6,7 @@
                     <img v-bind:src="src" style="height: 215px; maxWidth: 100%;" />
                 </div>
                  <div v-else>
-                    <div id='no-photo-container'>
+                    <div id="no-photo-container">
                         <div>
                             <v-icon id="camera">
                                 mdi-camera
@@ -18,9 +18,9 @@
                     </div>
                 </div>
                 <router-link :to="{path: '/recipe-card/' + recipe._id}">
-                    <h1 :title="recipe.name">
+                    <h2 :title="recipe.name">
                         {{truncatedRecipeName}}
-                    </h1>
+                    </h2>
                 </router-link>
                 <p  :title="recipe.description">
                     {{truncatedDescription}}
