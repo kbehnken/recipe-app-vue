@@ -9,7 +9,7 @@
                 <VTextField outlined required v-model="recipe.name" name="name" placeholder="Recipe Name *" />
                 <VTextField outlined v-model="recipe.fromTheKitchenOf" name="fromTheKitchenOf" placeholder="From the kitchen of" />
                 <VTextField outlined v-model="recipe.description" name="description" placeholder="Description" />
-                <VTextField outlined v-model="recipe.serves" name="serves" placeholder="Serves" class="float-left" />
+                <VTextField outlined v-model="recipe.serves" name="serves" placeholder="Serves" />
                 <VTextField outlined required v-model="recipe.prepTime" name="prepTime" placeholder="Prep Time *" class="float-left" />
                 <VTextField outlined required v-model="recipe.cookTime" name="cookTime" placeholder="Cook Time *" />
                 <VTextField outlined v-model="quantity" name="quantity" placeholder="Quantity" class="float-left" />
@@ -33,8 +33,7 @@
                     </span>
                 </div>
                 <div>
-                    <VFileInput v-model="photo" name="photo" /><br /><br />
-                    <br /><br />
+                    <VFileInput v-model="photo" name="photo" />
                 </div>
                 <div>
                     <VCheckbox v-model="recipe.isShared" label="Check this box to make your recipe visible to all recipe-box users." />
