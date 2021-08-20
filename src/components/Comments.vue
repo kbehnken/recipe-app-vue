@@ -4,7 +4,7 @@
             Comments
         </h1>
         <div style="text-align: center;">
-        <VTextarea outlined v-model="comment" name="comment" placeholder="Add a new comment" style="width: 80%;" />
+        <VTextarea outlined v-model="comment" name="comment" placeholder="Add a new comment" style="width: 80%; margin: auto;" />
         <button v-on:click="handleAddComment()" class="form-button">
             Save
         </button>
