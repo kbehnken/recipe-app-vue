@@ -7,6 +7,8 @@
             </h1>
             <div v-if="favoriteRecipes && favoriteRecipes.length > 0" class="flex-between-wrap">
                 <RecipeTile v-for="recipe in favoriteRecipes" v-bind:recipe="recipe" :key="'favorites_' + recipe._id" />
+                <div class="padding-tile" v-for="i in padding" :key="i">
+                </div>
             </div>
             <div v-else class="empty">
                 You have no favorite recipes to display. <router-link to="/all-recipes">Click here</router-link> to browse all recipes.
@@ -42,7 +44,16 @@ export default {
             recipes: [],
             favoriteRecipes: [],
             recentRecipes: [],
-            comment: ''
+            comment: '',
+            cols: 3
+        }
+    },
+    computed: {
+        padding() {
+            if (this.favoriteRecipes.length % this.cols === 0) {
+                return 0
+            }
+            return this.cols - (this.favoriteRecipes.length % this.cols)
         }
     },
     mounted() {
