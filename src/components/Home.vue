@@ -3,7 +3,9 @@
         <Header />
         <div class="outer-content-container">
             <h1>
-                Favorite Recipes
+                <v-icon large color="#ff0000" title="heart">
+                    mdi-heart
+                </v-icon> Favorite Recipes
             </h1>
             <div v-if="favoriteRecipes && favoriteRecipes.length > 0" class="flex-between-wrap">
                 <RecipeTile v-for="recipe in favoriteRecipes" v-bind:recipe="recipe" :key="'favorites_' + recipe._id" />
