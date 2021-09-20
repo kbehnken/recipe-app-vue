@@ -70,6 +70,7 @@
 
 <script>
 import axios from 'axios';
+import { getUserInfo } from '../helpers/getUserInfo';
 import { authHeader } from '../helpers/authHeader';
 import Header from './Header';
 
@@ -90,6 +91,10 @@ export default {
     },
     methods: {
         handleChangePassword() {
+            const userName = getUserInfo().email;
+            if (userName === 'guest@recipe-box.com') {
+                return this.$vToastify.error('The Guest user is not allowed to change their password.');
+            }
             if (this.newPassword.length < 12) {
                 return this.$vToastify.error('Password must be a minimum of 12 characters');
             }

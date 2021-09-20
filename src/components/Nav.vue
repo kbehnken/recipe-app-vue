@@ -21,12 +21,10 @@
                 </v-icon>
                 <div v-if="showMenu">
                     <menu>
-                        <div>
-                            <router-link to="/change-password">
-                                Change Password
-                            </router-link>
+                        <div v-on:click="permissionsCheck" class="menu-link">
+                            Change Password
                         </div>
-                        <div v-on:click="handleLogout" class="logout">
+                        <div v-on:click="handleLogout" class="menu-link">
                             Logout
                         </div>
                     </menu>
@@ -61,12 +59,10 @@
                                 My Recipes
                             </router-link>
                         </div>
-                        <div>
-                            <router-link to="/change-password">
-                                Change Password
-                            </router-link>
+                        <div v-on:click="permissionsCheck" class="menu-link">
+                            Change Password
                         </div>
-                        <div v-on:click="handleLogout" class="logout">
+                        <div v-on:click="handleLogout" class="menu-link">
                             Logout
                         </div>
                     </menu>
@@ -78,6 +74,7 @@
 </template>
 
 <script>
+import { getUserInfo } from '../helpers/getUserInfo';
 import logout from '../helpers/logout';
 import '../styles/nav.css';
 
@@ -94,6 +91,14 @@ export default {
         },
         handleLogout () {
             logout()
+        },
+        permissionsCheck() {
+            const userName = getUserInfo().email;
+            if (userName === 'guest@recipe-box.com') {
+                this.$vToastify.error('The Guest user is not allowed to change their password.');
+            } else {
+                this.$router.push('/change-password');
+            }
         }
     },
 }
