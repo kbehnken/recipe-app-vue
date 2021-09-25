@@ -3,26 +3,26 @@
         <Header />
         <div class="outer-content-container">
             <div class='form-container'>
-                <VTextField outlined v-model="recipe.name" name="name" placeholder="Recipe Name" />
+                <VTextField outlined v-model="recipe.name" name="name" placeholder="Recipe Name *" />
                 <VTextField outlined v-model="recipe.fromTheKitchenOf" name="fromTheKitchenOf" placeholder="From the kitchen of" />
                 <VTextField outlined v-model="recipe.description" name="description" placeholder="Description" />
-                <VTextField outlined v-model="recipe.serves" name="serves" placeholder="Serves" />
-                <VTextField outlined v-model="recipe.prepTime" name="prepTime" placeholder="Prep Time" />
-                <VTextField outlined v-model="recipe.cookTime" name="cookTime" placeholder="Cook Time" />
-                <VTextField outlined v-model="quantity" name="quantity" placeholder="Quantity" />
-                <VTextField outlined v-model="ingredient" name="ingredient" placeholder="Ingredient" />
-                <v-icon x-large v-on:click="handleAddIngredient" title="Add an ingredient">
+                <VTextField outlined v-model="recipe.serves" name="serves" placeholder="Serves" class="float-left" />
+                <VTextField outlined v-model="recipe.prepTime" name="prepTime" placeholder="Prep Time *" class="float-left" />
+                <VTextField outlined v-model="recipe.cookTime" name="cookTime" placeholder="Cook Time *" />
+                <VTextField outlined v-model="quantity" name="quantity" placeholder="Quantity" class="float-left" />
+                <VTextField outlined v-model="ingredient" name="ingredient" placeholder="Ingredient" class="float-left" />
+                <v-icon x-large v-on:click="handleAddIngredient" title="Add an ingredient" color="#00b300">
                     mdi-plus-box
                 </v-icon>
                 <draggable v-model="recipe.ingredients" name="draggableIngredients">
-                    <div v-for="(ingredient, index) in recipe.ingredients" :key="ingredient.name" class="ingredient-container">
+                    <div v-for="(ingredient, index) in recipe.ingredients" :key="ingredient.name" class="ingredient-container flex-between">
                         {{ingredient.quantity}} {{ingredient.name}}
-                        <v-icon medium v-on:click="handleDeleteIngredient(index)" title="Delete ingredient">
+                        <v-icon medium v-on:click="handleDeleteIngredient(index)" title="Delete ingredient" color="#00b300">
                             mdi-minus-box
                         </v-icon>
                     </div>
                 </draggable>
-                <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" />
+                <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" class="directions" />
                 <div>
                     <VFileInput v-model="photo"/><br /><br />
                     <br /><br />
