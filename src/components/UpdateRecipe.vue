@@ -24,8 +24,13 @@
                 </draggable>
                 <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" class="directions" />
                 <div>
-                    <VFileInput v-model="photo"/><br /><br />
-                    <br /><br />
+                    <label>Upload Photo:</label><br />
+                    <span className="fine-print">
+                        (.jpg, .gif, .png)<br />
+                    </span>
+                </div>
+                <div>
+                    <VFileInput v-model="photo"/>
                 </div>
                 <div>
                     <VCheckbox v-model="recipe.isShared" label="Check this box to make your recipe visible to all recipe-box users." />
