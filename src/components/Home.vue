@@ -24,6 +24,11 @@
             <div class="flex-between-wrap">
                 <RecipeTile v-for="recipe in recentRecipes" v-bind:recipe="recipe" :key="'recent_' + recipe._id" />
             </div>
+            <div style="text-align: right">
+                <router-link :to="{path: '/all-recipes/'}">
+                    View All
+                </router-link>
+            </div>
         </div>
     </div>
 </template>
