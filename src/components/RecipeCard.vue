@@ -7,15 +7,17 @@
                     <h1>
                         {{recipe.name}}
                     </h1>
-                    <div>
+                    <div style="width: 72px;">
                         <v-icon medium v-on:click="handlePrint" class="float-left" title="Print recipe">
                             mdi-printer
                         </v-icon>
+                        <div v-if="recipe.ownerId === userId">
                         <router-link :to="`/update-recipe/${this.recipeId}`">
                             <v-icon class="float-left" title="Edit recipe">
                                 mdi-pencil
                             </v-icon>
                         </router-link>
+                        </div>
                         <v-icon medium v-if="recipe.isFavorite" v-on:click="handleDeleteFavoriteRecipe" color="#ff0000" class="float-left" title="Remove from favorites">
                             mdi-heart
                         </v-icon>
@@ -24,6 +26,12 @@
                         </v-icon>
                     </div>
                 </div>
+                <div v-if="!recipe.fromTheKitchenOf">
+                    
+                </div>
+                <div v-else>
+                    From the kitchen of, {{recipe.fromTheKitchenOf}}
+                </div>
                 <div style="text-align: center;">
                     <br /><br />
                     <img v-bind:src="src" style="max-width: 100%;" />
@@ -31,30 +39,58 @@
                 </div>
                 <div style="text-align: center;">
                     {{recipe.description}}
+                    <br /><br />
                 </div>
-                {{recipe.fromTheKitchenOf}}
-                {{recipe.serves}}
-                {{recipe.prepTime}}
-                {{recipe.cookTime}}
-                <div>
-                    <label>
-                        INGREDIENTS
-                    </label>
+                <div class="float-left time-to-eat">
+                    <div>
+                        <label>
+                            SERVES
+                        </label>
+                    </div>
+                    <div>
+                        {{recipe.serves}}
+                        <br /><br />
+                    </div>
+                    <div>
+                        <label>
+                            PREP TIME
+                        </label>
+                    </div>
+                    <div>
+                        {{recipe.prepTime}}
+                        <br /><br />
+                    </div>
+                    <div>
+                        <label>
+                            COOK TIME
+                        </label>
+                    </div>
+                    <div>
+                        {{recipe.cookTime}}
+                        <br /><br />
+                    </div>
                 </div>
-                <div v-for="ingredient in recipe.ingredients" :key="ingredient._id">
-                    {{ingredient.quantity}} {{ingredient.name}}
+                <div class="ingredient-list">
+                    <div>
+                        <label>
+                            INGREDIENTS
+                        </label>
+                    </div>
+                    <div v-for="ingredient in recipe.ingredients" :key="ingredient._id">
+                        {{ingredient.quantity}} {{ingredient.name}}<br /><br />
+                    </div>
                 </div>
-                <div>
+                <div style="clear: both; text-align: center;">
                     <label>
                         DIRECTIONS
                     </label>
                 </div>
-                <div class="directions">
+                <div class="directions" style="text-align: justify;">
                     {{recipe.directions}}
                 </div>
+                <hr />
+                <Comments v-bind:recipeId="recipeId" v-bind:comments="recipe.comments" @refresh="handleLoadRecipe" />
             </div>
-            <hr />
-            <Comments v-bind:recipeId="recipeId" v-bind:comments="recipe.comments" @refresh="handleLoadRecipe" />
         </div>
     </div>
 </template>
@@ -63,6 +99,7 @@
 import axios from 'axios';
 import printjs from 'print-js';
 import { authHeader } from '../helpers/authHeader';
+import { getUserInfo } from '../helpers/getUserInfo';
 import Header from './Header';
 import Comments from './Comments';
 
@@ -79,6 +116,11 @@ export default {
         return {
             recipe: {comments: []},
             src: ''
+        }
+    },
+    computed: {
+        userId() {
+            return getUserInfo()._id; 
         }
     },
     mounted() {
@@ -134,10 +176,10 @@ export default {
         },
         handleDeleteFavoriteRecipe() {
             axios.delete('http://localhost:3030/api/v1/recipes/favorites', {
-                headers: authHeader()
-            },
-            {
-                recipeId: this.recipeId
+                headers: authHeader(),
+                data: {
+                    recipeId: this.recipeId
+                }
             })
             .then(() => {
                 this.recipe.isFavorite = false;
