@@ -33,7 +33,10 @@
                     </span>
                 </div>
                 <div>
-                    <VFileInput v-model="photo" name="photo" />
+                    <VFileInput v-model="photo" name="photo" v-on:change="showPreview" />
+                </div>
+                <div id="preview">
+                    <img v-if="imagePreview" :src="imagePreview" width="250px" />
                 </div>
                 <div>
                     <VCheckbox v-model="recipe.isShared" label="Check this box to make your recipe visible to all recipe-box users." />
@@ -74,7 +77,8 @@ export default {
             recipeId: '',
             quantity: '',
             ingredient: '',
-            photo: []
+            photo: [],
+            imagePreview: ''
         }
     },
     methods: {
@@ -113,6 +117,13 @@ export default {
             } else {
                 this.$vToastify.error('Please complete all required fields.');
             }
+        },
+        showPreview(file) {
+            if (!file) {
+                this.imagePreview = '';
+                return;
+            }
+            this.imagePreview = URL.createObjectURL(file);
         }
     }
 }

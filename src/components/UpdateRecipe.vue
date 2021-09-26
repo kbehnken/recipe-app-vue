@@ -25,9 +25,12 @@
                 <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" class="directions" />
                 <div>
                     <label>Upload Photo:</label><br />
-                    <span className="fine-print">
+                    <span class="fine-print">
                         (.jpg, .gif, .png)<br />
                     </span>
+                </div>
+                <div id="preview">
+                    <img v-if="imagePreview" :src="imagePreview" width="250px" />
                 </div>
                 <div>
                     <VFileInput v-model="photo"/>
@@ -61,7 +64,8 @@ export default {
             recipeId: '',
             quantity: '',
             ingredient: '',
-            photo: []
+            photo: [],
+            imagePreview: ''
         }
     },
     mounted() {
@@ -104,6 +108,13 @@ export default {
                     this.$router.push('/login');
                 }
             })
+        },
+        showPreview(file) {
+            if (!file) {
+                this.imagePreview = '';
+                return;
+            }
+            this.imagePreview = URL.createObjectURL(file);
         }
     }
 }
