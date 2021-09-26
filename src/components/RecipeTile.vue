@@ -3,10 +3,10 @@
         <router-link :to="{path: '/recipe-card/' + recipe._id}" style="color: #424242;">
             <div>
                 <div v-if="src && src.length > 0">
-                    <img v-bind:src="src" style="height: 215px; maxWidth: 100%;" />
+                    <img v-bind:src="src" style="height: 225px; maxWidth: 100%;" />
                 </div>
                  <div v-else>
-                    <div id="no-photo-container">
+                    <div id="no-photo-container" style="height: 225px; maxWidth: 100%;">
                         <div>
                             <v-icon id="camera">
                                 mdi-camera
@@ -60,10 +60,10 @@ export default {
     computed: {
         truncatedRecipeName() {
             const { name } = this.recipe
-            if (name.length <= 11) {
+            if (name.length <= 20) {
                 return name;
             }
-            return name.slice(0, 11) + '...';
+            return name.slice(0, 20) + '...';
         },
         truncatedDescription() {
             const { description } = this.recipe
