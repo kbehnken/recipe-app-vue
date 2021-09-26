@@ -1,14 +1,25 @@
 <template>
     <div>
-        <h1>
-            Comments
-        </h1>
-        <div style="text-align: center;">
-        <VTextarea outlined v-model="comment" name="comment" placeholder="Add a new comment" style="width: 80%; margin: auto;" />
-        <button v-on:click="handleAddComment()" class="form-button">
-            Save
-        </button>
         <VCheckbox off v-on:click="toggleComments()" label="Show only my comments." />
+        <div v-if="showAddComment === false">
+            <p v-on:click="toggleAddComment">
+                <v-icon>
+                    mdi-plus-box
+                </v-icon>Add a new comment.
+            </p>
+        </div>
+        <div v-else>
+            <p v-on:click="toggleAddComment">
+                <v-icon medium>
+                    mdi-minus-box
+                </v-icon>Hide add comment section.<br /><br />
+            </p>
+            <div style="text-align: center;">
+                <VTextarea outlined v-model="comment" name="comment" placeholder="Add a new comment" style="width: 80%; margin: auto;" />
+                <button v-on:click="handleAddComment()" class="form-button">
+                    Save
+                </button>
+            </div>
         </div>
         <div v-if="showMyComments === false && sortedComments && sortedComments.length > 0">
             <div v-for="comment in sortedComments" :key="comment._id">
@@ -48,7 +59,8 @@ export default {
         return {
             comment: '',
             myComments: [],
-            showMyComments: false
+            showMyComments: false,
+            showAddComment: false
         }
     },
     methods: {
@@ -83,7 +95,10 @@ export default {
                     return comment.owner._id == userId;
                 })
             }
-        }
+        },
+        toggleAddComment() {
+            return this.showAddComment = !this.showAddComment;
+        },
     },
     computed: {
         sortedComments() {
