@@ -2,20 +2,16 @@
     <div>
         <VCheckbox off v-on:click="toggleComments()" label="Show only my comments." />
         <div v-if="showAddComment === false">
-            <p v-on:click="toggleAddComment">
-                <v-icon>
-                    mdi-plus-box
-                </v-icon>Add a new comment.
-            </p>
+            <button v-on:click="toggleAddComment" class="form-button">
+                Add a New Comment
+            </button>
         </div>
         <div v-else>
-            <p v-on:click="toggleAddComment">
-                <v-icon medium>
-                    mdi-minus-box
-                </v-icon>Hide add comment section.<br /><br />
-            </p>
             <div style="text-align: center;">
                 <VTextarea outlined v-model="comment" name="comment" placeholder="Add a new comment" style="width: 80%; margin: auto;" />
+                <button v-on:click="toggleAddComment" class="form-button">
+                    Cancel
+                </button>
                 <button v-on:click="handleAddComment()" class="form-button">
                     Save
                 </button>
