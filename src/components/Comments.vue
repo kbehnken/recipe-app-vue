@@ -27,10 +27,12 @@
         </div>
         <div v-else-if="showMyComments === true && sortedComments && sortedComments.length > 0">
             <div v-for="comment in myComments" :key="comment._id">
-                Posted by {{comment.owner.firstName}} {{comment.owner.lastName}} on {{comment.formattedDate}}<br /><br />
-                <span class="comment">
-                    {{comment.comment}}
-                </span>
+                <div style="font-weight: 700; margin: 25px 0px 25px;">
+                    Posted by {{comment.owner.firstName}} {{comment.owner.lastName}} on {{comment.formattedDate}}
+                </div>
+                <div class="comment">
+                    {{comment.comment}}<br /><br />
+                </div>
             </div>
         </div>
         <div v-else class="empty">
