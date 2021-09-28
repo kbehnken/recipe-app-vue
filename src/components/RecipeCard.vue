@@ -30,7 +30,7 @@
                     
                 </div>
                 <div v-else>
-                    From the kitchen of, {{recipe.fromTheKitchenOf}}
+                    From the kitchen of: {{recipe.fromTheKitchenOf}}
                 </div>
                 <div style="text-align: center;">
                     <br /><br />
