@@ -30,7 +30,7 @@
                     </span>
                 </div>
                 <div>
-                    <VFileInput v-model="photo" name="photo" v-on:change="showPreview" />
+                    <VFileInput v-model="photo" name="photo" v-on:change="showPreview" hide-details />
                 </div>
                 <div id="preview">
                     <img v-if="imagePreview" :src="imagePreview" width="250px" />
