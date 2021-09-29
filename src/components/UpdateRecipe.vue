@@ -36,7 +36,7 @@
                     <img v-if="imagePreview" :src="imagePreview" width="250px" />
                 </div>
                 <div>
-                    <VCheckbox v-model="recipe.isShared" label="Check this box to make your recipe visible to all recipe-box users." />
+                    <VCheckbox v-model="recipe.isShared" label="Make your recipe visible to all recipe-box users." />
                 </div>
                 <button v-on:click="handleUpdateRecipe" class="form-button">
                     Save
