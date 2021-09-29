@@ -29,11 +29,11 @@
                         (.jpg, .gif, .png)<br />
                     </span>
                 </div>
+                <div>
+                    <VFileInput v-model="photo" name="photo" v-on:change="showPreview" />
+                </div>
                 <div id="preview">
                     <img v-if="imagePreview" :src="imagePreview" width="250px" />
-                </div>
-                <div>
-                    <VFileInput v-model="photo"/>
                 </div>
                 <div>
                     <VCheckbox v-model="recipe.isShared" label="Check this box to make your recipe visible to all recipe-box users." />
