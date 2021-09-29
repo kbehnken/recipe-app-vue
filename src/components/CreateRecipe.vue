@@ -26,15 +26,7 @@
                     </div>
                 </draggable>
                 <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" class="directions" />
-                <div>
-                    <label>Upload Photo:</label><br />
-                    <span className="fine-print">
-                        (.jpg, .gif, .png)<br />
-                    </span>
-                </div>
-                <div>
-                    <VFileInput v-model="photo" name="photo" v-on:change="showPreview" hide-details />
-                </div>
+                <VFileInput v-model="photo" name="photo" v-on:change="showPreview" placeholder="Select a photo (.jpg, .gif, .png)" hide-details />
                 <div id="preview">
                     <img v-if="imagePreview" :src="imagePreview" width="250px" />
                 </div>
