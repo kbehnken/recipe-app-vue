@@ -25,14 +25,12 @@
                         </v-icon>
                     </div>
                 </draggable>
-                <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" class="directions" />
-                <VFileInput v-model="photo" name="photo" v-on:change="showPreview" placeholder="Select a photo (.jpg, .gif, .png)" hide-details />
+                <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" class="directions" hide-details />
+                <br /><VFileInput v-model="photo" name="photo" v-on:change="showPreview" placeholder="Select a photo (.jpg, .gif, .png)" hide-details />
                 <div id="preview">
                     <img v-if="imagePreview" :src="imagePreview" width="250px" />
                 </div>
-                <div>
-                    <VCheckbox v-model="recipe.isShared" label="Make your recipe visible to all recipe-box users." />
-                </div>
+                <br /><VCheckbox v-model="recipe.isShared" label="Make your recipe visible to all recipe-box users." />
                 <button v-on:click="handleAddRecipe()" class="form-button">
                     Save
                 </button>
