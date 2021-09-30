@@ -43,8 +43,8 @@ export default {
     data: function () {
         return {
             users: {},
-            email: '',
-            password: '',
+            email: 'guest@recipe-box.com',
+            password: 'demo12345678',
             showPassword: false,
         }
     },
