@@ -42,7 +42,7 @@ export default {
         }
     },
     mounted() {
-        axios.get('http://localhost:3030/api/v1/recipes', {headers: authHeader()})
+        axios.get(`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/recipes`, {headers: authHeader()})
         .then(result => {
             this.recipes = result.data;
         })

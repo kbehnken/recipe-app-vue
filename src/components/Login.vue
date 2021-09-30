@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         handleLogin() {
-            axios.post('http://localhost:3030/api/v1/login', {email: this.email, password: this.password})
+            axios.post(`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/login`, {email: this.email, password: this.password})
             .then(result => {
                 console.log(result);
                 localStorage.setItem('accessToken', JSON.stringify(result.data.accessToken));

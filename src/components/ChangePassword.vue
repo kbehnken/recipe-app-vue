@@ -99,7 +99,7 @@ export default {
                 return this.$vToastify.error('Password must be a minimum of 12 characters');
             }
             if (this.newPassword === this.confirmPassword) {
-                axios.put('http://localhost:3030/api/v1/change-password', {
+                axios.put(`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/change-password`, {
                     oldPassword: this.oldPassword,
                     newPassword: this.newPassword
                 },
