@@ -43,8 +43,8 @@ export default {
     data: function () {
         return {
             users: {},
-            email: 'guest@recipe-box.com',
-            password: 'demo12345678',
+            email: '',
+            password: '',
             showPassword: false,
         }
     },
@@ -89,6 +89,18 @@ export default {
 
     #login-container div {
         margin: 0px 0px 10px;
+    }
+
+    @media only screen and (min-width: 1064px) {
+        #outer-content-container {
+            width: 925px;
+        }
+    }
+
+    @media only screen and (max-width: 695px) {
+        #outer-content-container {
+            width: 90%;
+        }
     }
 
     @media only screen and (max-width: 411px) {
