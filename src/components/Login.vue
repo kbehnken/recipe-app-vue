@@ -18,7 +18,7 @@
                 </VTextField>
             </div>
             <div v-else>
-                <VTextField outlined type="text" v-model="password" name="password" placeholder="Enter Password" hide-details>
+                <VTextField outlined type="text" v-model="password" name="password" placeholder="Enter Password">
                     <template v-slot:append>
                         <v-icon medium v-on:click="togglePasswordVisibility" color="#00b300">
                             mdi-eye-off
