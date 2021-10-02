@@ -31,6 +31,11 @@
                     Login
                 </button>
             </div>
+            <div v-if="demo" class="disclaimer">
+                <p>
+                    HEADS UP! This app is intended for demo purposes only. Any changes you make will be lost during scheduled site refresh. 
+                </p>
+            </div>
         </div>
     </div>
 </template>
@@ -46,6 +51,15 @@ export default {
             email: '',
             password: '',
             showPassword: false,
+            demo: false
+        }
+    },
+    mounted() {
+        this.demo = process.env.VUE_APP_DEMO;
+        console.log(this.demo)
+        if (this.demo) {
+            this.email = 'guest@recipe-box.com';
+            this.password = 'demo12345678';
         }
     },
     methods: {
@@ -89,6 +103,13 @@ export default {
 
     #login-container div {
         margin: 0px 0px 10px;
+    }
+
+    .disclaimer {
+        font-size: small;
+        color: tomato;
+        background-color: #eee;
+        padding: 5px;
     }
 
     @media only screen and (min-width: 1064px) {
