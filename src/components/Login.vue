@@ -56,7 +56,6 @@ export default {
     },
     mounted() {
         this.demo = process.env.VUE_APP_DEMO;
-        console.log(this.demo)
         if (this.demo) {
             this.email = 'guest@recipe-box.com';
             this.password = 'demo12345678';
