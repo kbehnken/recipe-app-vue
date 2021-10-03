@@ -29,16 +29,16 @@ menu a {
     padding: 10px 15px;
 }
 
-menu div a:hover, .logout:hover {
-    color: #fff;
-    background-color: #009800;
-}
-
-.logout {
+.menu-link {
     color: #fff;
     background-color: #00b300;
     cursor: pointer;
     padding: 10px 15px;
+}
+
+.menu-link:hover {
+    color: #fff;
+    background-color: #009800;
 }
 
 .user-icon, .hamburger-icon {
@@ -49,10 +49,6 @@ menu div a:hover, .logout:hover {
 .user-icon:hover, .hamburger-icon:hover {
     color: #009800;
 }
-
-/* .hamburger-icon {
-    display: none;
-} */
 
 .user-icon:hover menu, .hamburger-icon:hover menu {
     display: block;
