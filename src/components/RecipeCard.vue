@@ -129,7 +129,7 @@ export default {
     },
     methods: {
         handleLoadRecipe() {
-            axios.get(`http://localhost:3030/api/v1/recipes/by-recipe-id/${this.recipeId}`, {headers: authHeader()})
+            axios.get(`${process.env.VUE_APP_API_PROTOCOL}${process.env.VUE_APP_API_SERVER}:${process.env.VUE_APP_API_PORT}/api/v1/recipes/by-recipe-id/${this.recipeId}`, {headers: authHeader()})
             .then(result => {
                 this.recipe = result.data;
             })
