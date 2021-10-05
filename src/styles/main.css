@@ -216,7 +216,7 @@ img {
     .outer-content-container {
         width: 90%;
     }
-    #recipe-card {
+    #recipe-card, .form-container {
         width: 100%;
     }
 }
