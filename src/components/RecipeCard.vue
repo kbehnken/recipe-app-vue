@@ -85,7 +85,7 @@
                         DIRECTIONS
                     </label>
                 </div>
-                <div class="directions" style="text-align: justify;">
+                <div class="directions">
                     {{recipe.directions}}
                 </div>
                 <hr />
