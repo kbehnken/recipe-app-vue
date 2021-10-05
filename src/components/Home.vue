@@ -7,7 +7,7 @@
                     mdi-heart
                 </v-icon> Favorite Recipes
             </h1>
-            <div v-if="favoriteRecipes && favoriteRecipes.length > 0" class="flex-between-wrap">
+            <div v-if="favoriteRecipes && favoriteRecipes.length > 0" class="flex-between flex-wrap">
                 <RecipeTile v-for="recipe in favoriteRecipes" v-bind:recipe="recipe" :key="'favorites_' + recipe._id" />
                 <div class="padding-tile" v-for="i in padding" :key="i">
                 </div>
@@ -21,13 +21,16 @@
             <h1>
                 Recently Added Recipes
             </h1>
-            <div class="flex-between-wrap">
+            <div class="flex-between flex-wrap">
                 <RecipeTile v-for="recipe in recentRecipes" v-bind:recipe="recipe" :key="'recent_' + recipe._id" />
             </div>
             <div style="text-align: right">
                 <router-link :to="{path: '/all-recipes/'}">
                     View All
                 </router-link>
+            </div>
+            <div>
+                <hr />
             </div>
         </div>
     </div>

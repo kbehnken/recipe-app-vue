@@ -177,9 +177,7 @@ img {
     align-items: center;
 }
 
-.flex-between-wrap {
-    display: flex;
-    justify-content: space-between;
+.flex-wrap {
     flex-wrap: wrap;
 }
 
@@ -206,7 +204,7 @@ img {
 }
 
 @media only screen and (max-width: 749px) {
-    .flex-between-wrap {
+    .flex-wrap {
         align-items: center;
         flex-direction: column;
     }

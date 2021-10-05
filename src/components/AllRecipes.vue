@@ -2,7 +2,7 @@
     <div>
         <Header />
         <div class="outer-content-container">
-            <div v-if="recipes && recipes.length > 0" class="flex-between-wrap">
+            <div v-if="recipes && recipes.length > 0" class="flex-between flex-wrap">
                 <RecipeTile v-for="recipe in recipes" v-bind:recipe="recipe" :key="recipe._id" />
                 <div class="padding-tile" v-for="i in padding" :key="i">
                     

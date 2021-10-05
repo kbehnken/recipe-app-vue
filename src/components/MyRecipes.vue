@@ -6,7 +6,7 @@
                 <h1>
                     Published
                 </h1>
-                <div v-if="sharedRecipes && sharedRecipes.length > 0" class="flex-between-wrap">
+                <div v-if="sharedRecipes && sharedRecipes.length > 0" class="flex-between flex-wrap">
                     <RecipeTile v-for="recipe in sharedRecipes" v-bind:recipe="recipe" :key="recipe._id" />
                     <div class="padding-tile" v-for="i in padding" :key="i">
                     </div>
@@ -19,7 +19,7 @@
                 <h1>
                     Drafts
                 </h1>
-                <div v-if="draftRecipes && draftRecipes.length > 0" class="flex-between-wrap">
+                <div v-if="draftRecipes && draftRecipes.length > 0" class="flex-between flex-wrap">
                     <RecipeTile v-for="recipe in draftRecipes" v-bind:recipe="recipe" :key="recipe._id" />
                     <div class="padding-tile" v-for="i in padding" :key="i">
                         
