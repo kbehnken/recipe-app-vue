@@ -3,7 +3,7 @@
         <Header />
         <div class="outer-content-container">
             <p style="text-align: center;">
-                Fill out the form below and click the Add button to add a new recipe to the recipe box.<br /><br />
+                Fill out the form below and click the Save button to add a new recipe to the recipe box.<br /><br />
             </p>
             <div class="form-container">  
                 <VTextField outlined required v-model="recipe.name" name="name" placeholder="Recipe Name *" />
