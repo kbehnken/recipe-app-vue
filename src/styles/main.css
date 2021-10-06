@@ -42,7 +42,7 @@ img {
     margin: 10px;
 }
 
-#recipe-card, .form-container {
+.inner-content-container {
     width: 80%;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -214,7 +214,7 @@ img {
     .outer-content-container {
         width: 90%;
     }
-    #recipe-card, .form-container {
+    .inner-content-container {
         width: 100%;
     }
 }
