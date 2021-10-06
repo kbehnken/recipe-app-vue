@@ -2,7 +2,7 @@
     <div>
         <Header />
         <div class="outer-content-container">
-            <div id="recipe-card">
+            <div class="inner-content-container">
                 <div class="flex-between">
                     <h1>
                         {{recipe.name}}

@@ -2,7 +2,7 @@
     <div>
         <Header />
         <div class="outer-content-container">
-            <div class='form-container'>
+            <div class="inner-content-container">
                 <VTextField outlined v-model="recipe.name" name="name" placeholder="Recipe Name *" />
                 <VTextField outlined v-model="recipe.fromTheKitchenOf" name="fromTheKitchenOf" placeholder="From the kitchen of" />
                 <VTextField outlined v-model="recipe.description" name="description" placeholder="Description" />
@@ -21,6 +21,7 @@
                             mdi-minus-box
                         </v-icon>
                     </div>
+                    <br /><br />
                 </draggable>
                 <VTextarea outlined v-model="recipe.directions" name="directions" placeholder="Directions" class="directions" hide-details />
                 <br /><VFileInput v-model="photo" name="photo" v-on:change="showPreview" placeholder="Select a photo (.jpg, .gif, .png)" hide-details />

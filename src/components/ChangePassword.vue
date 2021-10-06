@@ -5,7 +5,7 @@
             <p style="text-align: center;">
                 Fill out the form below and click the Save button to change your recipe box password.<br /><br />
             </p>
-            <div class="form-container">
+            <div class="inner-content-container">
                 <div v-if="showOldPassword === false">
                     <VTextField outlined type="password" v-model="oldPassword" name="oldPassword" placeholder="Enter Old Password" autocomplete="off" autofocus>
                         <template v-slot:append>
