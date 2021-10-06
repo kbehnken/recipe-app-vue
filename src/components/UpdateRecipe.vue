@@ -67,12 +67,16 @@ export default {
     },
     methods: {
         handleAddIngredient() {
-            this.recipe.ingredients.push({
-                quantity: this.quantity,
-                name: this.ingredient
-            })
-            this.quantity = ''
-            this.ingredient = ''
+            if (this.quantity && this.ingredient) {
+                this.recipe.ingredients.push({
+                    quantity: this.quantity,
+                    name: this.ingredient
+                })
+                this.quantity = ''
+                this.ingredient = ''
+            } else {
+                this.$vToastify.error('Please enter a quantity and ingredient name to add an ingredient to your recipe.');
+            }
         },
         handleDeleteIngredient(index) {
             this.recipe.ingredients.splice(index, 1)
